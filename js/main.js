@@ -21,13 +21,21 @@ const perPage = 12
 //Eventos: Change, Click, Submit
 formularioBuscar.addEventListener("submit", (ev) => {
     ev.preventDefault()
-    const texto = buscar.value
-    console.log(texto)
-    const url = `search?query=${texto}&per_page=${perPage}`
+    const tag = buscar.value
+    console.log(tag)
+    const url = `search?query=${tag}&per_page=${perPage}`
     pintarGaleria(url)
+ 
 })
 
 document.addEventListener("click", (ev) => {
+    if(ev.target.matches('#seccionFotos img')){
+        //console.log("estoy en la img")
+        const tag = ev.target.id
+        //console.log(tag)
+        const url = `search?query=${tag}&per_page=${perPage}`
+        pintarGaleria(url)
+    }
 
 })
 
@@ -74,18 +82,21 @@ const pintarBuscar = async () => {
 const pintarCategorias = () => {
 
     const arrayIds = [{
-        tag: 'tigre',
+        titulo: 'tigre',
+        tag: 'tiger',
         id: "792381"
     }, {
-        tag: 'flores',
+        titulo: 'flores',
+        tag: 'flowers',
         id: "56866"
     },
     {
-        tag: 'coche',
+        titulo: 'coche',
+        tag: 'car',
         id: "210019"
     }];
 
-    arrayIds.forEach(async ({ tag, id }) => {
+    arrayIds.forEach(async ({ titulo: title, tag, id }) => {
 
         const respuesta = await comprobar(`photos/${id}`)
          const foto=await respuesta.respuesta;
@@ -97,7 +108,7 @@ const pintarCategorias = () => {
         imagen.alt = foto.alt;
         imagen.id = tag;
         const titulo = document.createElement('H3');
-        titulo.textContent = tag;
+        titulo.textContent = title;
         cajaFoto.append(imagen);
         caja.append(cajaFoto, titulo);
         seccionFotos.append(caja)
@@ -120,6 +131,7 @@ const pintarEncabezado = () => {
 }
 
 const pintarGaleria = async (url) => {
+    galeriaFotos.innerHTML=''
     console.log(url)
     const respuesta = await comprobar(url)
 
@@ -155,7 +167,9 @@ const pintarGaleria = async (url) => {
    
 }
 
-const pintarPaginacion = () => {
+const pintarPaginacion = (url) => {
+
+
 
 }
 
