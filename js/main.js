@@ -9,6 +9,7 @@ const encabezadoGaleria = document.querySelector('#encabezadoGaleria');
 const galeriaFotos = document.querySelector('#galeriaFotos');
 const botonesPaginacion = document.querySelector('#botonesPaginacion');
 
+// console.log(seccionFotos)
 //FRAGMENT
 const fragment = document.createDocumentFragment();
 
@@ -17,51 +18,82 @@ const urlBase = "https://api.pexels.com/v1";
 const arrayFiltro = ["Todos", "Vertical", "Horizontal"];
 
 //Eventos: Change, Click, Submit
-formularioBuscar.addEventListener("submit", (ev)=>{
+formularioBuscar.addEventListener("submit", (ev) => {
+
 
 })
 
-document.addEventListener("click", (ev)=>{
+document.addEventListener("click", (ev) => {
 
 })
 
-selectPosicionImg.addEventListener("change", (ev)=>{
+selectPosicionImg.addEventListener("change", (ev) => {
 
 })
 
 //Funciones a utilizar
 
 const comprobar = async (url) => {
-    
-    try{
-       let respuesta = await fetch(url, {
-        headers:{
-            authorization: 'YE5JirgNLsRVP2nvqIAkoWNUeVIaB7NaRlYbWQz9WvLmYBc6247ivBMN'}
-        })
-        console.log(respuesta)
 
-        if(respuesta.ok){
+    try {
+        let respuesta = await fetch(url, {
+            headers: {
+                authorization: 'YE5JirgNLsRVP2nvqIAkoWNUeVIaB7NaRlYbWQz9WvLmYBc6247ivBMN'
+            }
+        })
+        // console.log(respuesta)
+
+        if (respuesta.ok) {
             respuesta = respuesta.json()
-            
+
             return respuesta
             //console.log("ok", respuesta)
-        }else {
+        } else {
             throw ('error')
         }
-    }catch(error){
-       
+    } catch (error) {
+
     }
 
 }
 
-const pintarBuscar = async() => {
-    const buscar = await comprobar(`${urlBase}/search?query=nature&per_page=1`)
-    //si buscas en input "nature", este link sera el resultado.
-    
-    console.log(buscar)
+const pintarBuscar = async () => {
+
 }
 
-const pintarSeccionFotos = () => {
+const pintarCategorias = () => {
+
+    const arrayIds = [{
+        tag: 'tigre',
+        id: "792381"
+    }, {
+        tag: 'flores',
+        id: "56866"
+    },
+    {
+        tag: 'coche',
+        id: "210019"
+    }];
+
+    arrayIds.forEach(async ({ tag, id }) => {
+
+        const foto = await comprobar(`${urlBase}/photos/${id}`)
+        // console.log(foto)
+
+        const caja = document.createElement('ARTICLE');
+        const cajaFoto = document.createElement('DIV');
+        const imagen = document.createElement('IMG');
+        imagen.src = foto.src.medium;
+        imagen.alt = foto.alt;
+        imagen.id = tag;
+        const titulo = document.createElement('H3');
+        titulo.textContent = tag;
+        cajaFoto.append(imagen);
+        caja.append(cajaFoto, titulo);
+        seccionFotos.append(caja)
+    })
+   
+    
 
 }
 
@@ -88,4 +120,8 @@ const pintarPaginacion = () => {
 
 }
 
-pintarFiltro()
+
+pintarCategorias()
+pintarBuscar()
+
+
