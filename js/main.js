@@ -16,8 +16,7 @@ const urlBase = "https://api.pexels.com/v1"
 
 //Eventos: Change, Click, Submit
 formularioBuscar.addEventListener("submit", (ev)=>{
-    ev.preventDefault();
-    pintarGaleria('esta e la url')
+
 })
 
 document.addEventListener("click", (ev)=>{
@@ -37,7 +36,7 @@ const comprobar = async (url) => {
         headers:{
             authorization: 'YE5JirgNLsRVP2nvqIAkoWNUeVIaB7NaRlYbWQz9WvLmYBc6247ivBMN'}
         })
-        // console.log(respuesta)
+        console.log(respuesta)
 
         if(respuesta.ok){
             respuesta = respuesta.json()
@@ -48,27 +47,36 @@ const comprobar = async (url) => {
             throw ('error')
         }
     }catch(error){
-       return error
+       
     }
 
 }
 
-const pintarCategorías = () => {
-
-}
-
-
-const pintarGaleria = async(url) => {
-    console.log(url)
+const pintarBuscar = async() => {
     const buscar = await comprobar(`${urlBase}/search?query=nature&per_page=1`)
     //si buscas en input "nature", este link sera el resultado.
-    const {photos}=buscar
-    console.log(photos)
-
-    photos.forEach(element => {
-        console.log(element.alt)
-    });
+    
+    console.log(buscar)
 }
 
+const pintarSeccionFotos = () => {
 
+}
 
+const pintarSelect = () => {
+
+}
+
+const pintarEncabezado = () => {
+
+}
+
+const pintarGaleria = () => {
+
+}
+
+const pintarPaginacion = () => {
+
+}
+
+pintarBuscar()
