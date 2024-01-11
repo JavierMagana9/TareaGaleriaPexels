@@ -2,6 +2,7 @@
 /**
  * Captura de elementos del DOM
  */
+
 const formularioBuscar = document.querySelector('#formularioBuscar');
 const seccionFotos = document.querySelector('#seccionFotos');
 const selectPosicionImg = document.querySelector('#selectPosicionImg');
@@ -122,6 +123,6 @@ const pintarPaginacion = () => {
 
 
 pintarCategorias()
-pintarBuscar()
+pintarFiltro()
 
 
