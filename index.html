@@ -1,14 +1,80 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
     <title>Document</title>
 </head>
-<body>
-     
 
-<script src="js/main.js"></script>
+<body>
+    <form id="formularioBuscar">
+        <input type="text">
+        <button type="submit">buscar</button>
+    </form>
+    <main>
+
+
+        <section id="seccionFotos">
+            <!--las 3 imagenes se insertaran de forma dinamica-->
+            <!--esto sera creado desde el JS
+
+                Ejemplo:
+                <figure>
+                <div>
+                    <img>
+                </div>
+                <figcaption></figcaption>
+            </figure>
+            <figure>
+                <div>
+                    <img>
+                </div>
+                <figcaption></figcaption>
+            </figure>
+            <figure>
+                <div>
+                    <img>
+                </div>
+                <figcaption></figcaption>
+            </figure>
+            -->
+        </section>
+
+        <form id="selectPosicionImg">
+
+            <!--el select se hará dinamicamente atravez de Js, al igual que las opciones
+            Ejemplo:
+            <select>
+                <option>horizontal</option>
+                <option>vertical</option>
+            </select>
+            -->
+
+        </form>
+        <p id="encabezadoGaleria"></p>
+        <!--el parrafo se rellenaria con un template string
+
+               Ejemplo:
+
+                <p id="encabezadoGaleria">Mostrando ${} - ${Pagina}</p>
+
+            -->
+
+        <section id="galeriaFotos">
+
+            <!--Se incluira la galeria de fotos una vez se clicke un una imagen o se busque en el formularioBuscar-->
+
+        </section>
+        <div id="botonesPaginacion">
+            <!--
+            se incluira dinamicamente 2 botones que se llamaran paginaAnterior, paginaSiguiente
+        -->
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
 </body>
+
 </html>
