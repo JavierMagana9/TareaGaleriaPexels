@@ -2,18 +2,20 @@
 /**
  * Captura de elementos del DOM
  */
-const formularioBuscar = document.querySelector('#formularioBuscar')
-const seccionFotos = document.querySelector('#seccionFotos')
-const selectPosicionImg = document.querySelector('#selectPosicionImg')
-const encabezadoGaleria = document.querySelector('#encabezadoGaleria')
-const galeriaFotos = document.querySelector('#galeriaFotos')
-const botonesPaginacion = document.querySelector('#botonesPaginacion')
+const formularioBuscar = document.querySelector('#formularioBuscar');
+const seccionFotos = document.querySelector('#seccionFotos');
+const selectPosicionImg = document.querySelector('#selectPosicionImg');
+const encabezadoGaleria = document.querySelector('#encabezadoGaleria');
+const galeriaFotos = document.querySelector('#galeriaFotos');
+const botonesPaginacion = document.querySelector('#botonesPaginacion');
 
 // console.log(seccionFotos)
 //FRAGMENT
-const fragment = document.createDocumentFragment()
+const fragment = document.createDocumentFragment();
 
-const urlBase = "https://api.pexels.com/v1"
+const urlBase = "https://api.pexels.com/v1";
+
+const arrayFiltro = ["Todos", "Vertical", "Horizontal"];
 
 //Eventos: Change, Click, Submit
 formularioBuscar.addEventListener("submit", (ev) => {
@@ -95,7 +97,14 @@ const pintarCategorias = () => {
 
 }
 
-const pintarSelect = () => {
+const pintarFiltro = () => {
+    arrayFiltro.forEach((item)=>{
+        let opcion = document.createElement('OPTION')
+        opcion.text = item
+        opcion.value = item
+        
+        selectPosicionImg.append(opcion)
+    })
 
 }
 
@@ -111,5 +120,8 @@ const pintarPaginacion = () => {
 
 }
 
+
 pintarCategorias()
 pintarBuscar()
+
+

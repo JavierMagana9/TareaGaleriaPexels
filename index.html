@@ -9,12 +9,12 @@
 </head>
 
 <body>
-    <form id="formularioBuscar">
-        <input type="text">
-        <button type="submit">buscar</button>
-    </form>
-    <main>
 
+    <main>
+        <form id="formularioBuscar">
+            <input type="text" id="buscar">
+            <button type="submit">buscar</button>
+        </form>
 
         <section id="seccionFotos">
             <!--las 3 imagenes se insertaran de forma dinamica-->
@@ -42,7 +42,7 @@
             -->
         </section>
 
-        <form id="selectPosicionImg">
+        <select id="selectPosicionImg">
 
             <!--el select se hará dinamicamente atravez de Js, al igual que las opciones
             Ejemplo:
@@ -52,7 +52,7 @@
             </select>
             -->
 
-        </form>
+        </select>
         <p id="encabezadoGaleria"></p>
         <!--el parrafo se rellenaria con un template string
 
