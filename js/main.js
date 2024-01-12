@@ -43,23 +43,22 @@ formularioBuscar.addEventListener("submit", (ev) => {
     //console.log(tag)
     const url = `search?query=${palabraValida}&per_page=${perPage}`
     pintarGaleria(url)
-    pintarPaginacion()
-    
-    
+    pintarPaginacion() 
 })
 
 document.addEventListener("click", (ev) => {
     if(ev.target.matches('#seccionFotos img')){
         //console.log("estoy en la img")
-        const tag = ev.target.id
+        palabraValida = ev.target.id
         //console.log(tag)
-        const url = `search?query=${tag}&per_page=${perPage}`
+        const url = `search?query=${palabraValida}&per_page=${perPage}`
         pintarGaleria(url)
         pintarPaginacion()
     }
     if (ev.target.matches("#botonesPaginacion #nextPage")){
-        const urlpag=siguientePagina.replace(urlBase,'')
-        pintarGaleria(urlpag)
+        const urlPag=siguientePagina.replace(urlBase,'')
+        pintarGaleria(urlPag)
+        console.log(urlPag)
         }
     
         if (ev.target.matches("#botonesPaginacion #prevPage")){
@@ -70,11 +69,11 @@ document.addEventListener("click", (ev) => {
 })
 
 selectPosicionImg.addEventListener("change", (ev) => {
-    const valor = ev.target.value
+    const orientacion = ev.target.value
     
-    console.log("la orientacion es:",valor)
+    console.log("la orientacion es:",orientacion)
 
-    
+    pintarGaleria(`search?query=${palabraValida}&per_page=${perPage}&orientation=${orientacion}`)
     
 })
 
@@ -92,6 +91,7 @@ const comprobar = async (url) => {
 
         if (respuesta.ok) {
             respuesta = respuesta.json()
+            console.log(respuesta)
 
             return {
                 error:false,
@@ -114,16 +114,14 @@ const validar = (tag) => {
     error.innerHTML=''
     const regExp = /^[A-Za-z0-9 -]+$/
   
-    if(!regExp.test(tag)){
-        
-        
-        const mensaje = document.createElement('P')
-        mensaje.textContent = "Por favor escribe solo con letras, numeros y -"
-        error.append(mensaje)
-    } else{
+    if(regExp.test(tag)){
         palabraValida = tag
         console.log("validado")
         //console.log(palabraValida)
+    } else{
+        const mensaje = document.createElement('P')
+        mensaje.textContent = "Por favor escribe solo con letras, numeros y -"
+        error.append(mensaje)
     }
 }
 
@@ -174,9 +172,6 @@ const pintarFiltro = () => {
 
 }
 
-const pintarEncabezado = () => {
-
-}
 
 const pintarGaleria = async (url) => {
     galeriaFotos.innerHTML=''
@@ -233,7 +228,7 @@ botonPrev.id="prevPage"
 botonPrev.textContent="<Prev pagina"
 const botonNext=document.createElement("BUTTON")
 botonNext.id="nextPage"
-botonNext.textContent="Next pagina>"
+botonNext.textContent="Next paginas>"
 
 caja.append(botonPrev,botonNext)
 fragment.append(caja)
