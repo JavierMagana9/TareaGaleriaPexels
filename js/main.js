@@ -65,6 +65,7 @@ document.addEventListener("click", (ev) => {
             const urlpag=paginaAnterior.replace(urlBase,'')
             pintarGaleria(urlpag)
             }
+    
 
 })
 
@@ -182,8 +183,9 @@ const pintarGaleria = async (url) => {
         const foto=await respuesta.respuesta
         
         //console.log(foto)
-        const { photos,next_page,prev_page } = foto
+        const { photos,next_page,prev_page, page} = foto
         nextPagina(next_page)
+        numeroPagina(page)
         prevPagina(prev_page)
        photos.forEach((item)=>{
             //console.log(item)
@@ -215,22 +217,32 @@ const nextPagina=(next_page)=>{
     siguientePagina=next_page
    // console.log("en funcion nextPagina",next_page)   
 }
+const numeroPagina = (page) => {
+    console.log(page)
+    numero = page
+    console.log(numeroPagina)
+    pintarPaginacion(numero)
+}
+
 const prevPagina=(prev_page)=>{  
     paginaAnterior=prev_page
   //  console.log("en funcion prevPagina",prev_page)   
 }
-const pintarPaginacion = () => {
+const pintarPaginacion = (numero) => {
 
 botonesPaginacion.innerHTML='';
 const caja=document.createElement("DIV")
 const botonPrev=document.createElement("BUTTON")
 botonPrev.id="prevPage"
 botonPrev.textContent="<Prev pagina"
+const numeroPag=document.createElement("P")
+numeroPag.textContent= `${numero}`
+numeroPag.id = "numeroPag"
 const botonNext=document.createElement("BUTTON")
 botonNext.id="nextPage"
 botonNext.textContent="Next paginas>"
 
-caja.append(botonPrev,botonNext)
+caja.append(botonPrev,numeroPag, botonNext)
 fragment.append(caja)
 botonesPaginacion.append(fragment)
 
