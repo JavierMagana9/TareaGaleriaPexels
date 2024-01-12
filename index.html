@@ -15,7 +15,7 @@
             <input type="text" id="buscar">
             <button type="submit">buscar</button>
         </form>
-
+        <div id="error"></div>
         <section id="seccionFotos">
             <!--las 3 imagenes se insertaran de forma dinamica-->
             <!--esto sera creado desde el JS
@@ -42,9 +42,10 @@
             -->
         </section>
 
-        <select id="selectPosicionImg">
+        <div id="select">
+            <select id="selectPosicionImg">
 
-            <!--el select se hará dinamicamente atravez de Js, al igual que las opciones
+                <!--el select se hará dinamicamente atravez de Js, al igual que las opciones
             Ejemplo:
             <select>
                 <option>horizontal</option>
@@ -52,7 +53,9 @@
             </select>
             -->
 
-        </select>
+            </select>
+        </div>
+
         <p id="encabezadoGaleria"></p>
         <!--el parrafo se rellenaria con un template string
 
